@@ -250,7 +250,7 @@ public class ProceduralCylinder : MonoBehaviour {
     void SetColliderMesh()
     {
         var meshCollider = gameObject.GetComponent<MeshCollider>();
-        if (meshCollider != null && meshCollider.sharedMesh == null)
+        if (meshCollider != null)
             meshCollider.sharedMesh = modelMesh;
     }
 
