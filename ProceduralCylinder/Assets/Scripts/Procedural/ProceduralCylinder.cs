@@ -8,7 +8,6 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (MeshCollider))]
 [RequireComponent (typeof (MeshFilter))]
 [RequireComponent (typeof (MeshRenderer))]
 
@@ -48,6 +47,7 @@ public class ProceduralCylinder : MonoBehaviour {
 		modelMesh.name = "ProceduralCylinderMesh";
 		meshFilter = (MeshFilter)gameObject.GetComponent<MeshFilter>();
 		meshFilter.mesh = modelMesh;
+        SetColliderMesh();
 		
 		//sanity check
 		if(radialSegments < MIN_RADIAL_SEGMENTS)	radialSegments = MIN_RADIAL_SEGMENTS;
@@ -246,6 +246,18 @@ public class ProceduralCylinder : MonoBehaviour {
 	
 	    mesh.tangents = tangents;
 	}
-		
+
+    void SetColliderMesh()
+    {
+        var meshCollider = gameObject.GetComponent<MeshCollider>();
+        if (meshCollider != null)
+            meshCollider.sharedMesh = modelMesh;
+    }
+
+    void Awake()
+    {
+        SetColliderMesh();
+    }
+
 }
 
